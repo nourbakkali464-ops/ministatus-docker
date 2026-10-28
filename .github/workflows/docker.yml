@@ -28,7 +28,7 @@ jobs:
       - name: Tests dans le conteneur
         run: docker run --rm ${{ env.IMAGE }}:ci python -m unittest -v
       - name: Rapport Trivy (JSON)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ env.IMAGE }}:ci
           format: json
@@ -36,7 +36,7 @@ jobs:
           exit-code: "0"
 
       - name: Rapport Trivy (HTML)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ env.IMAGE }}:ci
           format: template
@@ -61,7 +61,7 @@ jobs:
           path: trivy-report.*
 
       - name: Quality gate (HIGH et CRITICAL)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ env.IMAGE }}:ci
           format: table
